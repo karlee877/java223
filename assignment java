@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class EEL {
+    private static final String CORRECT_USERNAME = "user123";
+    private static final String CORRECT_PASSWORD = "pass123";
+    private static final int MAX_TRIES = 3;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        for (int tries = 1; tries <= MAX_TRIES; tries++) {
+            System.out.println("Login Attempt " + tries);
+
+            System.out.print("Enter username: ");
+            String enteredUsername = scanner.nextLine();
+
+            System.out.print("Enter password: ");
+            String enteredPassword = scanner.nextLine();
+
+            if (login(enteredUsername, enteredPassword)) {
+                System.out.println("Login successful!");
+                break;
+            } else {
+                System.out.println("Incorrect username or password. Please try again.");
+            }
+
+            if (tries == MAX_TRIES) {
+                System.out.println("Maximum attempts reached. Account locked.");
+            }
+        }
+
+        scanner.close();
+    }
+
+    private static boolean login(String username, String password) {
+        return CORRECT_USERNAME.equals(username) && CORRECT_PASSWORD.equals(password);
+    }
+}
